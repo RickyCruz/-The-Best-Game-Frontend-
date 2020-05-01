@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss']
 })
-export class BarChartComponent implements OnInit {
+export class BarChartComponent implements OnInit, OnDestroy {
 
   data: any[] = [
     {
@@ -38,13 +38,31 @@ export class BarChartComponent implements OnInit {
 
   colorScheme = 'nightLights';
 
-  constructor() { }
+  interval;
+
+  constructor() {
+    this.interval = setInterval(() => {
+      console.log('Tick');
+
+      const newData = [...this.data];
+
+      for(let i in newData) {
+        newData[i].value = Math.round(Math.random() * 500);
+      }
+
+      this.data = [...newData];
+    }, 1500);
+  }
 
   onSelect(event: any) {
     console.log(event);
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 
 }
