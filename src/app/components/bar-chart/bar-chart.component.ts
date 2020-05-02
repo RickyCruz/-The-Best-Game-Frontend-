@@ -38,20 +38,20 @@ export class BarChartComponent implements OnInit, OnDestroy {
 
   colorScheme = 'nightLights';
 
-  interval;
+  // interval;
 
   constructor() {
-    this.interval = setInterval(() => {
-      console.log('Tick');
+    // this.interval = setInterval(() => {
+    //   console.log('Tick');
 
-      const newData = [...this.data];
+    //   const newData = [...this.data];
 
-      for(let i in newData) {
-        newData[i].value = Math.round(Math.random() * 500);
-      }
+    //   for(let i in newData) {
+    //     newData[i].value = Math.round(Math.random() * 500);
+    //   }
 
-      this.data = [...newData];
-    }, 1500);
+    //   this.data = [...newData];
+    // }, 1500);
   }
 
   onSelect(event: any) {
@@ -62,7 +62,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
   }
 
 }
