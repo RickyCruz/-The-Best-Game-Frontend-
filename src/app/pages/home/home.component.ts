@@ -9,6 +9,7 @@ import { Game } from '../../interfaces/interfaces';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  games: any[] = [];
 
   constructor(private firestore: AngularFirestore) { }
 
@@ -20,8 +21,8 @@ export class HomeComponent implements OnInit {
           return response.map(({ name, votes }) => ({ name, value: votes }));
         })
       )
-      .subscribe(response => {
-        console.log(response)
+      .subscribe(games => {
+        this.games = games;
       });
   }
 
